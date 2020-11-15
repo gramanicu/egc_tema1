@@ -32,14 +32,14 @@ GameObject::GameObject(Tema1* scene, glm::vec2 pos, GameObject_Types type) : sce
 		Mesh* bow = Objects::CreateBow(center, bowHeight);
 		this->scene->AddMeshToScene(bow);
 
-		Mesh* rope = Objects::CreateRope(center, baloonHeight / 2);
+		Mesh* rope = Objects::CreateRope(center, balloonHeight / 2);
 		this->scene->AddMeshToScene(rope);
 
-		Mesh* red_baloon = Objects::CreateBaloon(center, baloonHeight, COLOR_RED);
-		this->scene->AddMeshToScene(red_baloon);
+		Mesh* red_balloon = Objects::CreateBalloon(center, balloonHeight, COLOR_RED);
+		this->scene->AddMeshToScene(red_balloon);
 
-		Mesh* yellow_baloon = Objects::CreateBaloon(center, baloonHeight, COLOR_YELLOW);
-		this->scene->AddMeshToScene(yellow_baloon);
+		Mesh* yellow_balloon = Objects::CreateBalloon(center, balloonHeight, COLOR_YELLOW);
+		this->scene->AddMeshToScene(yellow_balloon);
 	}
 
 	rigidbody.state.x = pos;
@@ -81,13 +81,13 @@ void GameObject::RenderObject()
 		scene->RenderMesh(scene->getMeshes()["arrow"], scene->getShaders()["VertexColor"], mMatrix);
 	} break;
 	case GameObject_Types::YELLOW_BALOON: {
-		scene->RenderMesh(scene->getMeshes()["yellow_baloon"], scene->getShaders()["VertexColor"], mMatrix);
-		mMatrix *= Transform2D::Translate(0, -GameObject_Constants::baloonHeight / 2);
+		scene->RenderMesh(scene->getMeshes()["yellow_balloon"], scene->getShaders()["VertexColor"], mMatrix);
+		mMatrix *= Transform2D::Translate(0, -GameObject_Constants::balloonHeight / 2);
 		scene->RenderMesh(scene->getMeshes()["rope"], scene->getShaders()["VertexColor"], mMatrix);
 	} break;
 	case GameObject_Types::RED_BALOON: {
-		scene->RenderMesh(scene->getMeshes()["red_baloon"], scene->getShaders()["VertexColor"], mMatrix);
-		mMatrix *= Transform2D::Translate(0, -GameObject_Constants::baloonHeight / 2);
+		scene->RenderMesh(scene->getMeshes()["red_balloon"], scene->getShaders()["VertexColor"], mMatrix);
+		mMatrix *= Transform2D::Translate(0, -GameObject_Constants::balloonHeight / 2);
 		scene->RenderMesh(scene->getMeshes()["rope"], scene->getShaders()["VertexColor"], mMatrix);
 	} break;
 	}

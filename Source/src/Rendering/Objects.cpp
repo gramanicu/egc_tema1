@@ -86,7 +86,7 @@ Mesh* Objects::CreateRope(glm::vec3 top, float height) {
 	return rope;
 }
 
-Mesh* Objects::CreateBaloon(glm::vec3 center, float height, glm::vec3 color)
+Mesh* Objects::CreateBalloon(glm::vec3 center, float height, glm::vec3 color)
 {
 	double x_rad = height / 3;
 	double y_rad = height / 2;
@@ -105,7 +105,7 @@ Mesh* Objects::CreateBaloon(glm::vec3 center, float height, glm::vec3 color)
 	}
 	indices.push_back(1);
 
-	std::string mesh_name = "_baloon";
+	std::string mesh_name = "_balloon";
 	if (color == COLOR_RED) {
 		mesh_name = "red" + mesh_name;
 	}

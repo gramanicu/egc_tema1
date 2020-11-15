@@ -6,7 +6,7 @@
 // An array with the game objects
 std::vector<GameObject> gameObjects;
 
-double Tema1::baloon_speed = 100;
+double Tema1::balloon_speed = 100;
 double Tema1::shuriken_speed = 350;
 
 /// <summary>
@@ -38,32 +38,32 @@ void m_func_shuriken(Physics::State& state, double time, double dt) {
 	state.rot = ang_speed * time;
 }
 
-// Movement function for the baloons
-void m_func_baloon(Physics::State& state, double time, double dt) {
+// Movement function for the balloons
+void m_func_balloon(Physics::State& state, double time, double dt) {
 	double amplitude = 0.75;
 	double osc_factor = 3;
-	double vert_speed = Tema1::baloon_speed;
+	double vert_speed = Tema1::balloon_speed;
 
 	state.x.y +=  dt * vert_speed;
 	state.x.x += amplitude * cos((time + state.drag_coef) * osc_factor);
 }
 
-void Tema1::spawnRedBaloon(glm::vec2 pos) {
-	GameObject baloon(this, pos, GameObject_Types::RED_BALOON);
-	baloon.MovementType(Physics::Constants::Motion_Type::FUNCTION);
-	baloon.MovementFunction(m_func_baloon);
-	baloon.getRigidBody().state.drag_coef = (double)(rand() % 100) / 100.0;
-	baloon.getRigidBody().rotation_locked = true;
-	gameObjects.push_back(baloon);
+void Tema1::spawnRedBalloon(glm::vec2 pos) {
+	GameObject balloon(this, pos, GameObject_Types::RED_BALOON);
+	balloon.MovementType(Physics::Constants::Motion_Type::FUNCTION);
+	balloon.MovementFunction(m_func_balloon);
+	balloon.getRigidBody().state.drag_coef = (double)(rand() % 100) / 100.0;
+	balloon.getRigidBody().rotation_locked = true;
+	gameObjects.push_back(balloon);
 }
 
-void Tema1::spawnYellowBaloon(glm::vec2 pos) {
-	GameObject baloon(this, pos, GameObject_Types::YELLOW_BALOON);
-	baloon.MovementType(Physics::Constants::Motion_Type::FUNCTION);
-	baloon.MovementFunction(m_func_baloon);
-	baloon.getRigidBody().state.drag_coef = (double)(rand() % 100) / 100.0;
-	baloon.getRigidBody().rotation_locked = true;
-	gameObjects.push_back(baloon);
+void Tema1::spawnYellowBalloon(glm::vec2 pos) {
+	GameObject balloon(this, pos, GameObject_Types::YELLOW_BALOON);
+	balloon.MovementType(Physics::Constants::Motion_Type::FUNCTION);
+	balloon.MovementFunction(m_func_balloon);
+	balloon.getRigidBody().state.drag_coef = (double)(rand() % 100) / 100.0;
+	balloon.getRigidBody().rotation_locked = true;
+	gameObjects.push_back(balloon);
 }
 
 void Tema1::spawnShuriken(glm::vec2 pos) {
@@ -73,13 +73,13 @@ void Tema1::spawnShuriken(glm::vec2 pos) {
 	gameObjects.push_back(shuriken);
 }
 
-void Tema1::popBaloon(GameObject *baloon) {
-	if (baloon->getType() == GameObject_Types::RED_BALOON ||
-		baloon->getType() == GameObject_Types::YELLOW_BALOON) {
-		baloon->MovementType(Physics::Constants::Motion_Type::SIMULATED);
-		baloon->getRigidBody().state.drag_coef = 0;
-		baloon->getRigidBody().state.gravity_coef = 25.f;
-		baloon->getRigidBody().state.scl = glm::vec2(0.35, 0.75);
+void Tema1::popBalloon(GameObject *balloon) {
+	if (balloon->getType() == GameObject_Types::RED_BALOON ||
+		balloon->getType() == GameObject_Types::YELLOW_BALOON) {
+		balloon->MovementType(Physics::Constants::Motion_Type::SIMULATED);
+		balloon->getRigidBody().state.drag_coef = 0;
+		balloon->getRigidBody().state.gravity_coef = 25.f;
+		balloon->getRigidBody().state.scl = glm::vec2(0.35, 0.75);
 	}
 }
 
@@ -193,10 +193,10 @@ void Tema1::updateArrow(GameObject* arrow, double dt) {
 			bool collided;
 
 			if((type == GameObject_Types::RED_BALOON || type == GameObject_Types::YELLOW_BALOON) && go->scoring_system_active) {
-				collided = is_collision_pc(a_point, go->getRigidBody().state.x, GameObject_Constants::baloonHeight / 2);
+				collided = is_collision_pc(a_point, go->getRigidBody().state.x, GameObject_Constants::balloonHeight / 2);
 				if (collided) {
 					go->scoring_system_active = false;
-					popBaloon(&(*go));
+					popBalloon(&(*go));
 					if (type == GameObject_Types::RED_BALOON) {
 						score += score_red;
 					}
@@ -264,10 +264,10 @@ void Tema1::RenderMesh(Mesh *mesh, Shader *shader, const glm::mat3 &modelMatrix)
 void Tema1::ObjectSpawner() {
 	// If it can spawn a new object
 	if (spawn_delay < total_time - last_spawn_t) {
-		// Spawn baloons
-		if (count_baloons < max_baloons) {
+		// Spawn balloons
+		if (count_balloons < max_balloons) {
 			last_spawn_t = total_time;
-			count_baloons++;
+			count_balloons++;
 
 			int spawn_bounds_l = window->GetResolution().x / 6;
 			int spawn_bounds_r = window->GetResolution().x / 12;
@@ -275,10 +275,10 @@ void Tema1::ObjectSpawner() {
 			GameObject_Types type = (rand() % 2 == 0) ? GameObject_Types::RED_BALOON : GameObject_Types::YELLOW_BALOON;
 			int x = (rand() % (window->GetResolution().x - spawn_bounds_r - spawn_bounds_l)) + spawn_bounds_l;
 			if (type == GameObject_Types::RED_BALOON) {
-				spawnRedBaloon(glm::vec2(x, -25));
+				spawnRedBalloon(glm::vec2(x, -25));
 			}
 			else {
-				spawnYellowBaloon(glm::vec2(x, -25));
+				spawnYellowBalloon(glm::vec2(x, -25));
 			}
 			return;
 		}
@@ -348,23 +348,23 @@ void Tema1::DifficultySelect() {
 	case 1: {
 		lives = 4;
 		max_shurikens = 1;
-		max_baloons = 6;
+		max_balloons = 6;
 		reload_time = 0.5f;
-		baloon_speed = 75;
+		balloon_speed = 75;
 	} break;
 	case 3: {
 		lives = 2;
-		max_baloons = 4;
+		max_balloons = 4;
 		max_shurikens = 6;
 		spawn_delay = 0.5f;
 		reload_time = 1.5f;
 		shuriken_speed = 750;
-		baloon_speed = 125;
+		balloon_speed = 125;
 	} break;
 	default: {
 		lives = 3;
 		max_shurikens = 3;
-		max_baloons = 4;
+		max_balloons = 4;
 		spawn_delay = 0.75f;
 		shuriken_speed = 500;
 	} break;
@@ -427,7 +427,7 @@ void Tema1::Update(float deltaTimeSeconds)
 				GameObject_Types type = go->getType();
 
 				if (type == GameObject_Types::RED_BALOON || type == GameObject_Types::YELLOW_BALOON) {
-					count_baloons--;
+					count_balloons--;
 				}
 				else if (type == GameObject_Types::SHURIKEN) {
 					count_shurikens--;

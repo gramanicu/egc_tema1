@@ -28,7 +28,7 @@ namespace GameObject_Constants {
 	const float squareSide = 100;
 	const float arrowLength = 100;
 	const float shurikenWidth = 50;
-	const float baloonHeight = 75;
+	const float balloonHeight = 75;
 	const float bowHeight = 150;
 	const float lifeWidth = 50;
 }

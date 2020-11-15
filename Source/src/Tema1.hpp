@@ -39,7 +39,7 @@ public:
 
 	// Public game variables
 	static double shuriken_speed;
-	static double baloon_speed;
+	static double balloon_speed;
 
 private:
 	// The total time elapsed
@@ -71,9 +71,9 @@ private:
 	int lives = 3;
 	int score = 0;
 	int max_shurikens = 2;
-	int max_baloons = 4;
+	int max_balloons = 4;
 	int count_shurikens = 0;
-	int count_baloons = 0;
+	int count_balloons = 0;
 	double spawn_delay = 1;
 	double last_spawn_t = 0;
 	double score_red = 50;
@@ -98,10 +98,10 @@ private:
 	void ObjectSpawner();
 	void CheckGameEnd();
 
-	void spawnRedBaloon(glm::vec2 pos);
-	void spawnYellowBaloon(glm::vec2 pos);
+	void spawnRedBalloon(glm::vec2 pos);
+	void spawnYellowBalloon(glm::vec2 pos);
 	void spawnShuriken(glm::vec2 pos);
-	void popBaloon(GameObject *baloon);
+	void popBalloon(GameObject *balloon);
 	void hitShuriken(GameObject* shuriken);
 	void updateBow(GameObject* bow, double dt);
 	void updateArrow(GameObject* arrow, double dt);

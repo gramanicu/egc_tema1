@@ -26,13 +26,13 @@ namespace Objects
 	Mesh* CreateSquareLine(glm::vec3 center, float length, glm::vec3 color);
 
 	/// <summary>
-	/// Create a baloon.
+	/// Create a balloon.
 	/// </summary>
-	/// <param name="center">The center of the baloon(without the string)</param>
-	/// <param name="height">The height of the baloon (without the string)</param>
-	/// <param name="color">The color of the baloon</param>
-	/// <returns>The baloon mesh</returns>
-	Mesh* CreateBaloon(glm::vec3 center, float height, glm::vec3 color);
+	/// <param name="center">The center of the balloon(without the string)</param>
+	/// <param name="height">The height of the balloon (without the string)</param>
+	/// <param name="color">The color of the balloon</param>
+	/// <returns>The balloon mesh</returns>
+	Mesh* CreateBalloon(glm::vec3 center, float height, glm::vec3 color);
 
 	/// <summary>
 	/// Create a shuriken.
