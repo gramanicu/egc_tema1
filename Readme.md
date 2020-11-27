@@ -13,7 +13,6 @@ It is a 2D game written in C++, using OpenGL. The game objective is to shoot red
   - [Implementation details](#implementation-details)
     - [GameObjects class](#gameobjects-class)
     - [Objects namespace](#objects-namespace)
-  - [Homework active](#homework-active)
 
 ## Gameplay details
 
@@ -57,9 +56,5 @@ The most complex mesh (to create) was the bow mesh. The function takes two param
     - the center of the bow (the place where the arrow "rests" on the string).
     - the height of the bow (length of the string)
 From a geometry perspective, the string is a chord of a circle, and the bow body is an arc of the same circle. To compute the center of the circle that will be used to draw the mesh, we also need to know the angle of the arc (this is hardcoded in the function). Then, using two formulas (found [here](https://planetcalc.com/1421/)), we can compute the radius & the arc height, from where we can compute the center of the circle.
-
-## Homework active
-
-The homework active doesn't include the "/libs" folder in the root, as it was too big.
 
 © 2020 Grama Nicolae, 332CA
