@@ -338,7 +338,7 @@ void Tema1::CheckGameEnd() {
 
 void Tema1::DifficultySelect() {
 	int dif;
-	std::cout << "Welcome to 'Bow & Arrow'. Select a difficulty by tiping it's corresponding number\n";
+	std::cout << "Welcome to 'Bow & Arrow'. Select a difficulty by typing it's corresponding number\n";
 	std::cout << "1. Easy\n";
 	std::cout << "2. Medium (default)\n";
 	std::cout << "3. Hard\n";
